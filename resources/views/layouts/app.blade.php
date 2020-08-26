@@ -85,13 +85,37 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#openModal").click(function(event){
-                $("#sendMessage").click(function(event){
-                    event.preventDefault();
-                    console.log("Send Message");
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('#token').val()
+                }
+            });
+            console.log(host);
+
+            $("#openModal").click(function () {
+                $("#emailForm").on('submit', function (e) {
+                    e.preventDefault();
+                    let message = $("#message").val();
+
+                    $.ajax({
+                        data: message,
+                        url: '/feedback/sendemail',
+                        type:"POST",
+                        dataType:"json",
+                        success:function(data){
+                            console.log(data)
+                        },
+                        error:function(data){
+                            console.log("Error:", data);
+                        }
+
+
+                    })
+
                 })
-                
             })
+
+
         });
 
     </script>

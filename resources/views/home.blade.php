@@ -14,47 +14,36 @@
                     </div>
                     @endif
                     <!--Send Email Modal -->
-                    <div id="modaledit" class="modal fade" role="dialog">
+                    <div class="modal fade" id="send-email">
                         <div class="modal-dialog">
-
-                            <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Edit User</h4>
+                                    <h4 class="modal-title" align="center"><b>Send Email</b></h4>
                                 </div>
-                                <form id="formedit" , method="PUT" , action="">
+                                <form role="form" method="POST" id="emailForm">
                                     <div class="modal-body">
+                                        <input type="hidden" name="_token" id="token"
+                                            value="<?php echo csrf_token(); ?>">
                                         <div class="form-group">
-                                            <label for="InputEmail">Email address</label>
-                                            <input type="text" class="form-control" id="InputEmail" value="a" />
+                                            <label for="exampleInputEmail1">Message</label>
+                                            <textarea rows="7" id="message" class="form-control" name="message"
+                                                placeholder="Enter your Message.."></textarea>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="InputFname">First Name</label>
-                                            <input type="text" class="form-control" id="InputFname" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="InputLname">Last Name</label>
-                                            <input type="text" class="form-control" id="InputLname" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="Inputnohp">Phone Number</label>
-                                            <input type="text" class="form-control" id="Inputnohp" />
-                                        </div>
-
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" id="submit-edit" class="btn btn-default">Submit</button>
-                                        <button type="button" class="btn btn-default"
+                                        <button type="button" id="close" class="btn btn-danger pull-left"
                                             data-dismiss="modal">Close</button>
+                                        <button type="submit" id="#submit" class="btn btn-success">Send</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="text-center">
-                    <a href="" id="#openModal" class="btn btn-primary btn-rounded mb-4" data-toggle="modal"
-                        data-target="#sendEmail">Send Email</a>
+                    <a href="" class="btn btn-primary btn-rounded mb-4" id="openModal" data-toggle="modal"
+                        data-target="#send-email">FeedBack</a>
                 </div>
 
             </div>
