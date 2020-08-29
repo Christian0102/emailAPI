@@ -87,35 +87,37 @@
         $(document).ready(function () {
             $.ajaxSetup({
                 headers: {
-                    'X-CSRF-TOKEN': $('#token').val()
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            console.log(host);
 
             $("#openModal").click(function () {
                 $("#emailForm").on('submit', function (e) {
                     e.preventDefault();
-                    let message = $("#message").val();
 
                     $.ajax({
-                        data: message,
-                        url: '/feedback/sendemail',
-                        type:"POST",
-                        dataType:"json",
-                        success:function(data){
-                            console.log(data)
+                        type: 'POST',
+                        url: "/feedback/sendemail",
+                        data: {
+                            'message': $("#message").val()
                         },
-                        error:function(data){
-                            console.log("Error:", data);
+                        dataType: 'json',
+                        success: function (data) {
+                            $(".st-success").css('visibility', 'visible');
+                            $(".st-success").text(data);
+                            $("#send-email").modal("hide");
+
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            console.log(textStatus, XMLHttpRequest, errorThrown)
+                            $(".st-danger").css('visibility', 'visible');
+                            $(".st-danger").text(textStatus);
+                            $("#send-email").modal("hide");
                         }
+                    });
 
-
-                    })
-
-                })
-            })
-
-
+                });
+            });
         });
 
     </script>

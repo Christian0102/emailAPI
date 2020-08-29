@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -14,6 +14,7 @@
                     </div>
                     @endif
                     <!--Send Email Modal -->
+                    <div id="result"></div>
                     <div class="modal fade" id="send-email">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -43,9 +44,14 @@
 
                 <div class="text-center">
                     <a href="" class="btn btn-primary btn-rounded mb-4" id="openModal" data-toggle="modal"
-                        data-target="#send-email">FeedBack</a>
+                        data-target="#send-email">Send FeedBack</a>
                 </div>
-
+                <div class="alert alert-success" style="visibility:hidden;" role="alert">
+                    <strong class="st-success"></strong>
+                </div>
+                <div class="alert alert-danger" style="visibility:hidden;" role="alert">
+                    <strong class="st-danger"></strong>
+                </div>
             </div>
         </div>
     </div>

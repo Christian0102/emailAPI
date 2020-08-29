@@ -17,6 +17,7 @@ class CreateMessagesTable extends Migration
             $table->id();
             $table->text('message');
             $table->foreignId('user_id');
+            $table->boolean('read')->default('0');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
